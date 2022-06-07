@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/employee")
+@RequestMapping("employee")
 @RestController
 public class EmployeeController {
 
@@ -40,8 +40,4 @@ public class EmployeeController {
     public ResponseEntity<Employee> deleteEmployee(@PathVariable (value = "employeeId")String employeeId) throws Exception {
         return new ResponseEntity<>(employeeService.deleteEmployee(employeeId), HttpStatus.OK);
     }
-
-
-
-
 }
