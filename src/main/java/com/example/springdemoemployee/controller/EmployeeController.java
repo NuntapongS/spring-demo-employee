@@ -1,7 +1,9 @@
 package com.example.springdemoemployee.controller;
 
 import com.example.springdemoemployee.model.Employee;
+import com.example.springdemoemployee.model.dto.EmployeeDto;
 import com.example.springdemoemployee.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("employee")
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
@@ -27,12 +30,12 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee dataRequest) throws Exception {
+    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDto dataRequest) throws Exception {
         return new ResponseEntity<>(employeeService.addEmployee(dataRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{employeeId}")
-    public ResponseEntity<Employee> updateInfoEmployee(@PathVariable (value = "employeeId")String employeeId, Employee dataRequest) throws Exception {
+    public ResponseEntity<Employee> updateInfoEmployee(@PathVariable (value = "employeeId")String employeeId, EmployeeDto dataRequest) throws Exception {
         return new ResponseEntity<>(employeeService.updateInfoEmployee(employeeId, dataRequest), HttpStatus.OK);
     }
 
