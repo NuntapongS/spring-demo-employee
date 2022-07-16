@@ -30,7 +30,7 @@ public class EmployeeService {
                 .orElseThrow(() -> new Exception("Employee not found by this id : " + employeeId));
     }
 
-    public Employee addEmployee(EmployeeDto dataRequest) throws Exception {
+    public Employee addEmployee(EmployeeDto dataRequest) {
         var employee = employeeMapper.toEmployee(dataRequest);
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
@@ -47,7 +47,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Employee deleteEmployee(String employeeId) throws Exception {
+    public Employee deleteEmployee(String employeeId) {
         employeeRepository.deleteById(employeeId);
         return null;
     }

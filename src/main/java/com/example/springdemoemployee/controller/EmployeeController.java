@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDto dataRequest) throws Exception {
+    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDto dataRequest) {
         return new ResponseEntity<>(employeeService.addEmployee(dataRequest), HttpStatus.CREATED);
     }
 
@@ -40,7 +40,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{employeeId}")
-    public ResponseEntity<Employee> deleteEmployee(@PathVariable (value = "employeeId")String employeeId) throws Exception {
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable (value = "employeeId")String employeeId) {
         return new ResponseEntity<>(employeeService.deleteEmployee(employeeId), HttpStatus.OK);
     }
 }
