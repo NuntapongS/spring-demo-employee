@@ -11,8 +11,6 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class EmployeeDto {
 
-    @Id
-    private String id;
     private String firstName;
     private String lastName;
     private String gender;
