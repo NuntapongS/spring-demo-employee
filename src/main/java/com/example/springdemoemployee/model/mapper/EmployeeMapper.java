@@ -5,8 +5,7 @@ import com.example.springdemoemployee.model.dto.EmployeeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface EmployeeMapper {
     Employee toEmployee(EmployeeDto employeeDto);
 }
