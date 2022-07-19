@@ -74,4 +74,35 @@ public class EmployeeServiceTest {
         ArgumentCaptor<Employee> captor = ArgumentCaptor.forClass(Employee.class);
         verify(employeeRepository).save(captor.capture());
     }
+
+    @Test
+    void updateEmployee() throws Exception {
+        // Arrange
+        var employeeReqId = "1234";
+        var localDateTimeNow = LocalDateTime.now();
+        var employeeReq = new EmployeeDto(
+                "Nuntapong",
+                "Siripanyawong",
+                "Male",
+                "nuntapong.sr@gmail.com",
+                "0831757157"
+        );
+        var employeeRes = new Employee(
+                "1234",
+                "Nuntapong Siripanyawong",
+                "Male",
+                "0831757157",
+                "nuntapong@odds.team",
+                localDateTimeNow,
+                localDateTimeNow
+        );
+        when(employeeRepository.findById(employeeReqId)).thenReturn(Optional.of(employeeRes));
+        when(employeeMapper.toEmployee(employeeReq)).thenReturn(employeeRes);
+        when(employeeRepository.save(any(Employee.class))).thenReturn(employeeRes);
+        // Act
+        var addEmployee = employeeService.updateInfoEmployee(employeeReqId, employeeReq);
+        // Assert
+        assertThat(addEmployee.getId()).isEqualTo("1234");
+        verify(employeeRepository).save(any(Employee.class));
+    }
 }
