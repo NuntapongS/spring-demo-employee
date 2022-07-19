@@ -38,7 +38,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{employeeId}")
-    public ResponseEntity<Employee> deleteEmployee(@PathVariable (value = "employeeId")String employeeId) {
+    public ResponseEntity<String> deleteEmployee(@PathVariable (value = "employeeId")String employeeId) throws Exception {
         return new ResponseEntity<>(employeeService.deleteEmployee(employeeId), HttpStatus.OK);
     }
 }

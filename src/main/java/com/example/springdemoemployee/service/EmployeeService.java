@@ -49,8 +49,12 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Employee deleteEmployee(String employeeId) {
-        employeeRepository.deleteById(employeeId);
-        return null;
+    public String deleteEmployee(String employeeId) throws Exception {
+        try {
+           employeeRepository.deleteById(employeeId);
+        }catch (RuntimeException e) {
+            throw new Exception("cannot delete employee by this Id " + employeeId);
+        }
+        return "Delete Successfully";
     }
 }

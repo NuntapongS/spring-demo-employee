@@ -105,4 +105,26 @@ public class EmployeeServiceTest {
         assertThat(addEmployee.getId()).isEqualTo("1234");
         verify(employeeRepository).save(any(Employee.class));
     }
+
+    @Test
+    void deleteEmployee() throws Exception {
+        // Arrange
+        var localDateTimeNow = LocalDateTime.now();
+        var employee = new Employee(
+                "1234",
+                "Nuntapong Siripanyawong",
+                "Male",
+                "0831757157",
+                "nuntapong@ods.team",
+                localDateTimeNow,
+                localDateTimeNow
+        );
+        String employeeId = employee.getId();
+        when(employeeRepository.findById(employeeId)).thenReturn(Optional.of(employee));
+        // Act
+        var deleteEmployee = employeeService.deleteEmployee(employeeId);
+        // Assert
+        assertThat(deleteEmployee).isEqualTo("Delete Successfully");
+        verify(employeeRepository).deleteById(employeeId);
+    }
 }
